@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<title>XKCD</title>
+
+<body>
+
+  <p>City Bikes</p>
+  <div id="comic">No comic</div>
+  <img id="picture" src="" alt="">
+  <p id="company">hello</p>
+  <a href="names.html">go here</a>
+</body>
+
+<script>
+  var myurl = "http://api.citybik.es/v2/networks";
+  console.log(myurl);
+  fetch(myurl, {
+      mode: 'cors'
+    })
+    .then(function(response) {
+      return response.json();
+    }).then(function(json) {
+      console.log(json);
+      document.getElementById("comic").innerHTML = json["networks"][595].location.city;
+      document.getElementById("picture").src = json["img"];
+      document.getElementById("company").innerHTML = json["networks"][595].company;
+    });
+</script>
+
+</html>
